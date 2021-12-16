@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_gravity="center"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="연속 "
+            android:fontFamily="@font/comingcoon"
+            ></TextView>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/etNum"
+            android:focusableInTouchMode="false"
+            android:fontFamily="@font/comingcoon"
+            android:enabled="false"
+            android:background="@null"
+            ></EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 일째 감사일기 작성중  "
+            android:fontFamily="@font/comingcoon"
+            ></TextView>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="총 "
+            android:fontFamily="@font/comingcoon"
+            ></TextView>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/etNumTotal"
+            android:focusableInTouchMode="false"
+            android:fontFamily="@font/comingcoon"
+            android:enabled="false"
+            android:background="@null"
+            ></EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" 일동안 감사일기 작성중  "
+            android:fontFamily="@font/comingcoon"
+            ></TextView>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
