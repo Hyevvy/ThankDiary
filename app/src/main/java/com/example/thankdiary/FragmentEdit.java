@@ -2,9 +2,12 @@ package com.example.thankdiary;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextWatcher;
 import android.text.style.TypefaceSpan;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +36,7 @@ public class FragmentEdit extends Fragment {
     Button updateBtn, submitBtn;
     DBHelper myDB;
     String todayDate, todayContent;
+    boolean isTextChanged = false;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,7 +51,7 @@ public class FragmentEdit extends Fragment {
         //1. 오늘 날짜를 구해서 tvToday에 넣어준다.
         now = System.currentTimeMillis();
         date = new Date(now);
-        tvToday.setText(mFormat.format(date));
+        tvToday.setText(new SimpleDateFormat("yyyy. MM. dd").format(date));
 
 
 
@@ -66,6 +70,7 @@ public class FragmentEdit extends Fragment {
                     }
                     else{
                         myDB.InsertDiary(todayContent , todayDate);
+                        Toast.makeText(getActivity(), "오늘의 감사일기가 저장되었습니다", Toast.LENGTH_SHORT).show();
                     }
                     updateBtn.setVisibility(View.VISIBLE);
                     submitBtn.setVisibility(View.GONE);
@@ -75,23 +80,53 @@ public class FragmentEdit extends Fragment {
         else {
             //오늘 작성한 감사 일기가 있으면
             etTodayDt.setText(todayDiaryInDB);
-            //editText의 내용이 조금이라도 바뀌었으면 버튼이 submit 버튼으로 변경되어야함. (또는 update버튼)
             updateBtn.setVisibility(View.VISIBLE);
             submitBtn.setVisibility(View.GONE);
+        }
 
+        String etTodayDtString = etTodayDt.getText().toString();
+
+        //일기의 내용이 변했는지 확인
+        etTodayDt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(!etTodayDtString.equals(s)) {
+                    isTextChanged = true;
+                    updateBtn.setText("UPDATE");
+                    //일기 내용이 바뀌었을때만 UPDATE 버튼이 동작하도록
+                    BeAvailabeUpdateBtn();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                isTextChanged = true;
+            }
+        });
+
+
+
+        return view;
+    }
+
+    private void BeAvailabeUpdateBtn(){
+        if(isTextChanged == true) {
             //update database
             updateBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     todayContent = etTodayDt.getText().toString();
                     myDB.UpdateDiary(todayContent, todayDate);
+                    Toast.makeText(getActivity(), "오늘의 감사일기가 수정되었습니다", Toast.LENGTH_SHORT).show();
+                    updateBtn.setText("EDIT");
+                    isTextChanged = false;
                 }
             });
         }
-
-        return view;
     }
-
-
 
 }
