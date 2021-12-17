@@ -20,11 +20,14 @@ public class MainActivity extends AppCompatActivity {
     FragmentEdit fragmentEdit;
     FragmentTop fragTop;
     ImageButton homebtn;
+    private DBHelper mDBHelper;
     FragmentTransaction fragmentTransaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        setInit();
 
         fragTop = new FragmentTop();
         fragmentsetting = new FragmentSetting();
@@ -70,5 +73,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setInit() {
+        mDBHelper = new DBHelper(this);
     }
 }

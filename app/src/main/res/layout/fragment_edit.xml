@@ -25,7 +25,7 @@
         android:background="@drawable/et_border"
         android:fontFamily="@font/comingcoon"
         android:hint="Write A Today's Gratitude Journal !"
-
+        android:privateImeOptions="defaultInputmode=korean"
         android:id="@+id/etTodayTD">
     </EditText>
 
