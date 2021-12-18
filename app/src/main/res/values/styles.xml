@@ -11,6 +11,16 @@
         <item name="android:checkboxStyle">@style/customCheckboxFontStyle</item>
     </style>
 
+    <style name="MyDatePickerDialogTheme" parent="AppTheme">
+        <item name="android:textColorPrimaryInverse">#000</item> <!-- header date, month color && calendar text highlight color -->
+        <item name="android:textColorSecondaryInverse">#000</item> <!-- header year color -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="fontFamily">@font/nanum</item>
+        <item name="colorAccent">#fe918d</item>
+
+    </style>
+
+
     <style name="NotoSansTextViewStyle" parent="@android:style/Widget.DeviceDefault.TextView">
         <item name="android:fontFamily">@font/comingcoon</item>
     </style>

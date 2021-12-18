@@ -57,6 +57,28 @@ public class DBHelper extends SQLiteOpenHelper {
         return content;
     }
 
+    public Integer getTotalDay(){
+        ArrayList<DiaryItem> diaryItems = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+
+        Integer id = 0;
+        Cursor cursor = db.rawQuery("SELECT * FROM Diary", null);
+
+        // String todayContent = String.valueOf(db.rawQuery("SELECT content FROM Diary WHERE writeDate = '"+ _writeDate +"'", null));
+        if(cursor.getCount() != 0){
+            while(cursor.moveToNext()){
+                id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+            }
+        }
+        else{
+            return null;
+        }
+        cursor.close();
+
+        return id;
+    }
+
+
     //SELECT 문 (일기를 조회한다.)
     public ArrayList<DiaryItem> getDiaryList(){
         ArrayList<DiaryItem> diaryItems = new ArrayList<>();
