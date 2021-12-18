@@ -1,0 +1,10 @@
+<resources>
+
+    <string-array name="select_dialog_items2">
+        <item>Map</item>
+        <item>Satellite</item>
+        <item>AM 10:00</item>
+        <item>알림 끄기</item>
+    </string-array>
+
+</resources>

@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="25dp"
+            android:id="@+id/setting_first_tab"
             android:text=" 알림설정">
         </TextView>
     </LinearLayout>
@@ -35,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="25dp"
+            android:id="@+id/setting_second_tab"
             android:text=" 음악설정">
         </TextView>
     </LinearLayout>
@@ -53,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="25dp"
+            android:id="@+id/setting_third_tab"
             android:text=" 문의하기">
         </TextView>
     </LinearLayout>
@@ -69,6 +72,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/setting_fourth_tab"
             android:textSize="25dp"
             android:text=" 이용약관">
         </TextView>
@@ -86,6 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="25dp"
+            android:id="@+id/setting_fifth_tab"
             android:text=" 개인정보처리방침">
         </TextView>
     </LinearLayout>
