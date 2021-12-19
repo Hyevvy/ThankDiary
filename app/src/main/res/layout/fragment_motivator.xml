@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:layout_width="fill_parent"
-    android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
 
-<!--    <include layout="@layout/my_video_background" />-->
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 
-    <VideoView
-        android:id="@+id/screenVideoView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp"
-         />
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/bgimg"
+    android:scaleType="fitXY"
+    ></ImageView>
+
 
     <TextView
+        android:textStyle="bold"
+        android:textSize="21dp"
+        android:padding="2px"
+        android:shadowRadius="8.0"
+        android:shadowDx="8.0"
+        android:shadowDy="8.0"
+        android:shadowColor="#000000"
+        android:fontFamily="@font/nanumgothic"
+        android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/bgimg"
+        android:layout_alignTop="@id/bgimg"
+        android:layout_alignRight="@id/bgimg"
+        android:layout_alignBottom="@id/bgimg"
+        android:layout_margin="1dp"
+        android:gravity="center"
         android:text="Motivator"
         android:textColor="@color/white"
         ></TextView>

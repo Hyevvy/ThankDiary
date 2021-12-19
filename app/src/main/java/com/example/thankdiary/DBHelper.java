@@ -121,7 +121,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 diaryItem.setId(id);
                 diaryItem.setWriteDate(writeDate);
 
-                System.out.println("diarty : get Year(): " + diaryItem.getYear());
                 if(diaryItem.getMonth() == month && diaryItem.getYear() == year){
                     //같은 월과 연도의 일기인지 체크
                     //arr.add(writeDate);

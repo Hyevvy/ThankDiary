@@ -84,11 +84,12 @@ public class FragmentEdit extends Fragment {
             });
         }
         else {
+            System.out.println("hehehr");
             //오늘 작성한 감사 일기가 있으면
             etTodayDt.setText(todayDiaryInDB);
             etTodayDt.setEnabled(false);
-            updateBtn.setEnabled(false);
             updateBtn.setVisibility(View.VISIBLE);
+            updateBtn.setEnabled(false);
             editBtn.setVisibility(View.VISIBLE);
             submitBtn.setVisibility(View.GONE);
         }
@@ -112,7 +113,7 @@ public class FragmentEdit extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(!etTodayDtString.equals(s)) {
+                if(!etTodayDtString.contentEquals(s)) {
                     isTextChanged = true;
                     updateBtn.setEnabled(true);
                     //일기 내용이 바뀌었을때만 UPDATE 버튼이 동작하도록
