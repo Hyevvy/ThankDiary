@@ -38,13 +38,36 @@
         android:layout_marginBottom="20dp"
         ></Button>
 
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/updateBtn"
-        android:visibility="gone"
-        android:fontFamily="@font/nanumgothic"
-        android:text="EDIT"
-        android:layout_marginBottom="20dp"></Button>
+        android:layout_gravity="center"
+        android:gravity="center"
+        >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editBtn"
+            android:visibility="gone"
+            android:fontFamily="@font/nanumgothic"
+            android:text="EDIT"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            ></Button>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/updateBtn"
+            android:visibility="gone"
+            android:fontFamily="@font/nanumgothic"
+            android:enabled="false"
+            android:text="UPDATE"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="10dp"
+            ></Button>
+    </LinearLayout>
+
 
 </LinearLayout>

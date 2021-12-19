@@ -99,7 +99,6 @@ public class FragmentSetting extends Fragment {
                        }
                        else {
                            mSwitch.setText("알림 해제");
-                           //이 때는 TimePicke 안 보임
                            TextView tv = new TextView(getActivity());
                            tv.setText("알림 설정을 해제했습니다.");
                            builder.setView(tv);
