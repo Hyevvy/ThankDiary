@@ -79,6 +79,7 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
+
     //SELECT 문 (일기를 조회한다.)
     public ArrayList<DiaryItem> getDiaryList(){
         ArrayList<DiaryItem> diaryItems = new ArrayList<>();
@@ -91,14 +92,10 @@ public class DBHelper extends SQLiteOpenHelper {
             //조회한 데이터가 있는 경우
             while(cursor.moveToNext()){
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
-                String content = cursor.getString(cursor.getColumnIndex("content"));
                 String writeDate = cursor.getString(cursor.getColumnIndex("writeDate"));
-
                 DiaryItem diaryItem = new DiaryItem();
                 diaryItem.setId(id);
-                diaryItem.setContent(content);
                 diaryItem.setWriteDate(writeDate);
-
                 diaryItems.add(diaryItem);
             }
         }
@@ -107,10 +104,39 @@ public class DBHelper extends SQLiteOpenHelper {
         return diaryItems;
     }
 
+    //그 달의 일기가 있는 날들을 조회한다.
+    public ArrayList<Integer> getThisMonthDiary(int month, int year){
+        ArrayList<DiaryItem> diaryItems = new ArrayList<>();
+       ArrayList<Integer> arr = new ArrayList<>();
+
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Diary ORDER BY writeDate DESC", null);
+
+        if(cursor.getCount() != 0){
+            //조회한 데이터가 있는 경우
+            while(cursor.moveToNext()){
+                int id = cursor.getInt(cursor.getColumnIndex("id"));
+                String writeDate = cursor.getString(cursor.getColumnIndex("writeDate"));
+                DiaryItem diaryItem = new DiaryItem();
+                diaryItem.setId(id);
+                diaryItem.setWriteDate(writeDate);
+
+                System.out.println("diarty : get Year(): " + diaryItem.getYear());
+                if(diaryItem.getMonth() == month && diaryItem.getYear() == year){
+                    //같은 월과 연도의 일기인지 체크
+                    //arr.add(writeDate);
+                    arr.add((writeDate.charAt(10)-'0') * 10 + writeDate.charAt(11)-'0');
+                }
+            }
+        }
+        cursor.close();
+
+        return arr;
+    }
+
 
     //INSERT문 (일기를 DB에 넣는다.)
     public void InsertDiary(String _content, String _writeDate){
-        System.out.println("db에 일기넣ㅇ늠");
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("INSERT INTO Diary(content, writeDate) VALUES('" + _content + "', '" + _writeDate + "' )");
     }
