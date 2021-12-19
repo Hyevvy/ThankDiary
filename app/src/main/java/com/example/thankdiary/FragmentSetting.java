@@ -3,6 +3,7 @@ package com.example.thankdiary;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,7 +34,21 @@ import static com.example.thankdiary.R.drawable.switch_selector;
 public class FragmentSetting extends Fragment {
     View view;
     TextView one, two, three, four, five;
+    FragmentSettingListener listener;
 
+    public interface FragmentSettingListener{
+        void onInputSettingSend(Boolean input);
+    }
+
+    public void onAttach(@NonNull Context context){
+        super.onAttach(context);
+        if(context instanceof FragmentSettingListener){
+            listener = (FragmentSettingListener)context;
+        }
+        else {
+            throw new RuntimeException(context.toString() + "must implement FragmentSettingListener");
+        }
+    }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -112,22 +127,24 @@ public class FragmentSetting extends Fragment {
             });
 
 
+        //배경음악 ON / OFF 설정
         two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("MUSIC ON / OFF");
-                builder.setMessage("노래를 끌까요?");
-                builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("음악 끄기", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getActivity(), "예 선택", Toast.LENGTH_SHORT).show();
+                        listener.onInputSettingSend(true);
+                        //Toast.makeText(getActivity(), "음악 끄기", Toast.LENGTH_SHORT).show();
                     }
                 });
-                builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("음악 켜기", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getActivity(), "아니오 선택", Toast.LENGTH_SHORT).show();
+                        listener.onInputSettingSend(false);
+                        //Toast.makeText(getActivity(), "음악 켜기", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.show();

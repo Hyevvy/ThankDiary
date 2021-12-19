@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,19 +14,26 @@ import android.widget.ImageButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements  FragmentSetting.FragmentSettingListener{
     FragmentSetting fragmentsetting;
     FragmentMonth fragmentMonth;
     FragmentMotivator fragmentMotivator;
     FragmentEdit fragmentEdit;
     FragmentTop fragTop;
     ImageButton homebtn;
+    MediaPlayer mediaPlayer;
+
     private DBHelper mDBHelper;
     FragmentTransaction fragmentTransaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mediaPlayer = MediaPlayer.create(this, R.raw.background_music);
+        mediaPlayer.start();
+        mediaPlayer.setLooping(true); //앱이 종료될 때까지 무한 재생
+
+
 
         setInit();
 
@@ -77,5 +85,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void setInit() {
         mDBHelper = new DBHelper(this);
+    }
+
+    @Override
+    public void onInputSettingSend(Boolean input) {
+        if(input == true){
+            mediaPlayer.pause();
+        }
+        else mediaPlayer.start();
     }
 }
