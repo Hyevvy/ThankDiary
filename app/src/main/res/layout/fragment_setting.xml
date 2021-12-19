@@ -6,6 +6,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         >
         <ImageView
             android:layout_width="wrap_content"
@@ -18,6 +19,7 @@
             android:layout_height="wrap_content"
             android:textSize="25dp"
             android:id="@+id/setting_first_tab"
+            android:fontFamily="@font/nanumgothic"
             android:text=" 알림설정">
         </TextView>
     </LinearLayout>
@@ -25,6 +27,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         >
         <ImageView
             android:layout_width="wrap_content"
@@ -36,6 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="25dp"
+            android:fontFamily="@font/nanumgothic"
             android:id="@+id/setting_second_tab"
             android:text=" 음악설정">
         </TextView>
@@ -45,7 +49,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        >
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,6 +62,7 @@
             android:layout_height="wrap_content"
             android:textSize="25dp"
             android:id="@+id/setting_third_tab"
+            android:fontFamily="@font/nanumgothic"
             android:text=" 문의하기">
         </TextView>
     </LinearLayout>
@@ -63,7 +70,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        >
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,6 +81,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumgothic"
             android:id="@+id/setting_fourth_tab"
             android:textSize="25dp"
             android:text=" 이용약관">
@@ -80,7 +90,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        >
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -90,6 +102,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="25dp"
+            android:fontFamily="@font/nanumgothic"
             android:id="@+id/setting_fifth_tab"
             android:text=" 개인정보처리방침">
         </TextView>

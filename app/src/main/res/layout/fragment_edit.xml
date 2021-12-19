@@ -23,7 +23,7 @@
         android:layout_weight="1"
         android:layout_margin="20dp"
         android:background="@drawable/et_border"
-        android:fontFamily="@font/comingcoon"
+        android:fontFamily="@font/nanumgothic"
         android:hint="Write A Today's Gratitude Journal !"
         android:privateImeOptions="defaultInputmode=korean"
         android:id="@+id/etTodayTD">
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/submitBtn"
-        android:fontFamily="@font/comingcoon"
+        android:fontFamily="@font/nanumgothic"
         android:text="SUBMIT"
         android:layout_marginBottom="20dp"
         ></Button>
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/updateBtn"
         android:visibility="gone"
-        android:fontFamily="@font/comingcoon"
+        android:fontFamily="@font/nanumgothic"
         android:text="EDIT"
         android:layout_marginBottom="20dp"></Button>
 
