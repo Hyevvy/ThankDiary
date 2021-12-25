@@ -11,6 +11,7 @@ public class DiaryItem {
     public DiaryItem() {
     }
 
+
     public int getId() {
         return id;
     }

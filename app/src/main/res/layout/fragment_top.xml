@@ -5,19 +5,22 @@
     android:orientation="vertical"
     android:gravity="center"
     android:layout_gravity="center"
+    android:layout_marginTop="-20dp"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginBottom="15dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="연속 "
-            android:fontFamily="@font/comingcoon"
+            android:fontFamily="@font/nanumgothic"
+            android:textSize="23dp"
             ></TextView>
 
         <EditText
@@ -25,16 +28,18 @@
             android:layout_height="wrap_content"
             android:id="@+id/etNum"
             android:focusableInTouchMode="false"
-            android:fontFamily="@font/comingcoon"
+            android:fontFamily="@font/nanumgothic"
             android:enabled="false"
             android:background="@null"
+            android:textSize="23dp"
             ></EditText>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" 일째 감사일기 작성중  "
-            android:fontFamily="@font/comingcoon"
+            android:fontFamily="@font/nanumgothic"
+            android:textSize="23dp"
             ></TextView>
 
 
@@ -42,6 +47,7 @@
 
 
     <LinearLayout
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -51,7 +57,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="총 "
-            android:fontFamily="@font/comingcoon"
+            android:fontFamily="@font/nanumgothic"
+            android:textSize="23dp"
             ></TextView>
 
         <EditText
@@ -59,8 +66,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/etNumTotal"
             android:focusableInTouchMode="false"
-            android:fontFamily="@font/comingcoon"
+            android:fontFamily="@font/nanumgothic"
             android:enabled="false"
+            android:textSize="23dp"
             android:background="@null"
             ></EditText>
 
@@ -68,7 +76,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" 일동안 감사일기 작성중  "
-            android:fontFamily="@font/comingcoon"
+            android:textSize="23dp"
+            android:fontFamily="@font/nanumgothic"
             ></TextView>
 
     </LinearLayout>

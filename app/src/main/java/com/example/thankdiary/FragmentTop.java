@@ -10,11 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class FragmentTop extends Fragment {
     View view;
-    Integer day, totalDay;
+    Integer seriesDay, totalDay;
     EditText etNum, etTotalNum;
     DBHelper myDB;
+    long now;
+    Date date;
+    String todayDate;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,18 +35,13 @@ public class FragmentTop extends Fragment {
         etTotalNum = (EditText) view.findViewById(R.id.etNumTotal);
         myDB = new DBHelper(getActivity());
 
+        now = System.currentTimeMillis();
+        date = new Date(now);
         totalDay = myDB.getTotalDay();
-        System.out.println(totalDay);
-        Bundle data = getArguments();
-        if (data != null) {
-            day = data.getInt("day");
-           // totalDay = data.getInt("totalDay");
-        } else {
-            day = 0;
-            //totalDay = 0;
-        }
+        seriesDay = myDB.getSeriesDay(new SimpleDateFormat("yyyy. MM. dd").format(date));
+        System.out.println("seriesDay: "  + seriesDay);
 
-        etNum.setText(String.valueOf(day));
+        etNum.setText(String.valueOf(seriesDay));
         etTotalNum.setText(String.valueOf(totalDay));
 
         return view;

@@ -7,7 +7,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class DBHelper extends SQLiteOpenHelper {
     private static final int DB_VERSION = 1;
@@ -25,7 +29,7 @@ public class DBHelper extends SQLiteOpenHelper {
         //primary key : 컬럼들을 계속 집어넣을건데, 이게 그 열쇠
         //AUTOINCREMENT : id가 데이터가 들어올 때마다 하나씩 자동 증가
         //NOT NULL : 비어 있지 않으면
-       db.execSQL("CREATE TABLE IF NOT EXISTS Diary (id INTEGER PRIMARY KEY AUTOINCREMENT, content TEXT NOT NULL, writeDate TEXT NOT NULL UNIQUE)");
+        db.execSQL("CREATE TABLE IF NOT EXISTS Diary (id INTEGER PRIMARY KEY AUTOINCREMENT, content TEXT NOT NULL, writeDate TEXT NOT NULL UNIQUE)");
     }
 
     @Override
@@ -34,22 +38,21 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     //특정 날짜 일기 조회
-    public String getTodayDiaryList(String _writeDate){
+    public String getTodayDiaryList(String _writeDate) {
         ArrayList<DiaryItem> diaryItems = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
 
         String content = null;
-        Cursor cursor = db.rawQuery("SELECT * FROM Diary WHERE writeDate = '"+ _writeDate +"'", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM Diary WHERE writeDate = '" + _writeDate + "'", null);
 
-       // String todayContent = String.valueOf(db.rawQuery("SELECT content FROM Diary WHERE writeDate = '"+ _writeDate +"'", null));
-        if(cursor.getCount() != 0){
-            while(cursor.moveToNext()){
-               int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
-               content = cursor.getString(cursor.getColumnIndexOrThrow("content"));
+        // String todayContent = String.valueOf(db.rawQuery("SELECT content FROM Diary WHERE writeDate = '"+ _writeDate +"'", null));
+        if (cursor.getCount() != 0) {
+            while (cursor.moveToNext()) {
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                content = cursor.getString(cursor.getColumnIndexOrThrow("content"));
                 return content;
             }
-        }
-        else{
+        } else {
             return null;
         }
         cursor.close();
@@ -57,7 +60,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return content;
     }
 
-    public Integer getTotalDay(){
+    public Integer getTotalDay() {
         ArrayList<DiaryItem> diaryItems = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
 
@@ -65,12 +68,11 @@ public class DBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery("SELECT * FROM Diary", null);
 
         // String todayContent = String.valueOf(db.rawQuery("SELECT content FROM Diary WHERE writeDate = '"+ _writeDate +"'", null));
-        if(cursor.getCount() != 0){
-            while(cursor.moveToNext()){
+        if (cursor.getCount() != 0) {
+            while (cursor.moveToNext()) {
                 id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
             }
-        }
-        else{
+        } else {
             return null;
         }
         cursor.close();
@@ -78,7 +80,59 @@ public class DBHelper extends SQLiteOpenHelper {
         return id;
     }
 
+    //오늘 날짜를 기준으로 연속 며칠동안 일기를 작성하였는지 return
+    public Integer getSeriesDay(String todayDate) {
+        ArrayList<DiaryItem> diaryItems = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        //내림차순으로 정렬
+        Integer seriesDay = 0;
+        Cursor cursor = db.rawQuery("SELECT * FROM Diary ORDER BY writeDate DESC", null);
 
+        String prevDate = todayDate;
+
+
+        if (cursor.getCount() != 0) {
+            //조회한 데이터가 있는 경우
+            while (cursor.moveToNext()) {
+                int id = cursor.getInt(cursor.getColumnIndex("id"));
+                String writeDate = cursor.getString(cursor.getColumnIndex("writeDate"));
+                System.out.println("writeDate" + writeDate);
+                //TEST :
+                Calendar getToday = Calendar.getInstance();
+                try {
+                    getToday.setTime(new SimpleDateFormat("yyyy. MM. dd").parse(prevDate)); //금일 날짜
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("prevDate" + prevDate);
+                if(writeDate.equals(prevDate)) {
+                    seriesDay++;
+                    continue;
+                }
+                try {
+                    Date date = new SimpleDateFormat("yyyy. MM. dd").parse(writeDate);
+                    Calendar cmpDate = Calendar.getInstance();
+                    cmpDate.setTime(date); //특정 일자
+                    long diffSec = (getToday.getTimeInMillis() - cmpDate.getTimeInMillis()) / 1000;
+                    long diffDays = diffSec / (24*60*60); //일자수 차이
+
+                    if(diffDays != 1){
+                        return seriesDay;
+                    }
+                    seriesDay++;
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                DiaryItem diaryItem = new DiaryItem();
+                diaryItems.add(diaryItem);
+
+                prevDate = writeDate;
+            }
+        }
+        cursor.close();
+        return seriesDay;
+    }
 
     //SELECT 문 (일기를 조회한다.)
     public ArrayList<DiaryItem> getDiaryList(){

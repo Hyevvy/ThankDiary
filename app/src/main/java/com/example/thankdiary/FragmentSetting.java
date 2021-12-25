@@ -156,7 +156,7 @@ public class FragmentSetting extends Fragment {
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("문의하기");
-                builder.setMessage("문의는 hyevvy@naver.com로 부탁드립니다.");
+                builder.setMessage("hyevvy@naver.com로 문의 부탁드립니다.");
 
                 builder.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
                     @Override
@@ -206,48 +206,5 @@ public class FragmentSetting extends Fragment {
         return view;
     } // onCreateView end
 
-//    private TimePickerDialog.OnTimeSetListener listener = new TimePickerDialog.OnTimeSetListener() {
-//
-//        @Override
-//
-//        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-//
-//            if(flag == 0) {
-//                binding.textBorrow.setTextSize(15);
-//                binding.textBorrow.setText(hourOfDay + ":" + minute);
-//                str_borrow_time = hourOfDay + ":" + minute;
-//                borrow_time = hourOfDay*60+minute;
-//            } else if (flag == 1){
-//                binding.textReturn.setTextSize(15);
-//                binding.textReturn.setText(hourOfDay + ":" + minute);
-//                str_return_time = hourOfDay + ":" + minute;
-//                return_time = hourOfDay*60+minute;
-//            }
-//
-//
-//        }
-//
-//    };
-
-
-//    TimePickerDialog mTimePickerDialog = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
-//
-//        @Override
-//        public void onTimeSet(TimePicker timePicker, int i, int i1) {
-//            int hour = timePicker.getHour(); // == i
-//            int minute = timePicker.getMinute(); // == i1
-//        }
-//    }, Calendar.HOUR_OF_DAY, Calendar.MINUTE, true).show();
-
-
-//    private void showTimePicker() {
-//        Calendar cal = Calendar.getInstance();
-//        int hour = cal.get(Calendar.HOUR_OF_DAY);
-//        int min = cal.get(Calendar.MINUTE);
-//        TimePickerDialog mTimePickerDialog = new TimePickerDialog(getActivity(), listener, hour, min, true);
-//        return mTimePickerDialog;
-//    }
-//
-
-
+    
 }
