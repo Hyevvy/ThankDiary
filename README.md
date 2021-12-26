@@ -22,16 +22,29 @@
 
 <br/>
 
-### 프로젝트 소개
+### Project
+당신의 소중한 매일을 위한 일기 어플리케이션, 매일을 소중히
+
+프로젝트 기간: 2021.12.16 - 2021.12.26
+Released: 2021.12.26
 
 
 
+### Development Environment and Using Library
 
+* Development Environment 
+![Android](https://img.shields.io/badge/Android-4.1-orange.svg) ![Android](https://img.shields.io/badge/Platform-Android-orange.svg)
 
+* Using Library  
 
+  ```ruby
+  'MaterialCalendarView' #캘린더 구현
+  
+  
 <br/>
 
-### 상세 설명
+### App Description
+
 
 
  
