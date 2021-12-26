@@ -46,6 +46,6 @@ public class NotificationHelper extends ContextWrapper {
         return new NotificationCompat.Builder(getApplicationContext(), channelD)
                 .setContentTitle("매일을 소중히")
                 .setContentText("오늘도 감사 일기와 함께 하루를 채워보세요")
-                .setSmallIcon(R.drawable.ic_launcher_background);
+                .setSmallIcon(R.drawable.ic_people_heart);
     }
 }

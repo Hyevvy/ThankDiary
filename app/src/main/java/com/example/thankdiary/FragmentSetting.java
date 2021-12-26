@@ -114,9 +114,8 @@ public class FragmentSetting extends Fragment {
                        }
                        else {
                            mSwitch.setText("알림 해제");
-                           TextView tv = new TextView(getActivity());
-                           tv.setText("알림 설정을 해제했습니다.");
-                           builder.setView(tv);
+                           Toast.makeText(getActivity(), "알림 설정이 해제되었습니다", Toast.LENGTH_SHORT).show();
+                           cancelAlarm();
                        }
                     }
                 }
@@ -234,5 +233,12 @@ public class FragmentSetting extends Fragment {
         }
     }
 
+    private void cancelAlarm(){
+        AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(getActivity(), AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 1, intent, 0);
+        alarmManager.cancel(pendingIntent);
+
+    }
     
 }
