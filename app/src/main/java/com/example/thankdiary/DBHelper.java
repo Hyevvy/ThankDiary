@@ -67,7 +67,6 @@ public class DBHelper extends SQLiteOpenHelper {
         Integer id = 0;
         Cursor cursor = db.rawQuery("SELECT * FROM Diary", null);
 
-        // String todayContent = String.valueOf(db.rawQuery("SELECT content FROM Diary WHERE writeDate = '"+ _writeDate +"'", null));
         if (cursor.getCount() != 0) {
             while (cursor.moveToNext()) {
                 id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
@@ -96,19 +95,30 @@ public class DBHelper extends SQLiteOpenHelper {
             while (cursor.moveToNext()) {
                 int id = cursor.getInt(cursor.getColumnIndex("id"));
                 String writeDate = cursor.getString(cursor.getColumnIndex("writeDate"));
+                String content = cursor.getString(cursor.getColumnIndexOrThrow("content"));
+
+                System.out.println("prevDate" + prevDate);
                 System.out.println("writeDate" + writeDate);
-                //TEST :
+
+                //오늘 기준의 일기가 있을 때
+                if(writeDate.equals(prevDate)) {
+                    seriesDay++;
+                    continue;
+                }
+
+                //오늘 기준의 일기가 없을 때
+                if(writeDate != prevDate && seriesDay == 0){
+                    return 0;
+                }
+
                 Calendar getToday = Calendar.getInstance();
                 try {
                     getToday.setTime(new SimpleDateFormat("yyyy. MM. dd").parse(prevDate)); //금일 날짜
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                System.out.println("prevDate" + prevDate);
-                if(writeDate.equals(prevDate)) {
-                    seriesDay++;
-                    continue;
-                }
+
+
                 try {
                     Date date = new SimpleDateFormat("yyyy. MM. dd").parse(writeDate);
                     Calendar cmpDate = Calendar.getInstance();

@@ -1,10 +1,13 @@
 package com.example.thankdiary;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -29,12 +32,14 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import static androidx.core.content.ContextCompat.getSystemService;
 import static com.example.thankdiary.R.drawable.switch_selector;
 
 public class FragmentSetting extends Fragment {
     View view;
     TextView one, two, three, four, five;
     FragmentSettingListener listener;
+    private AlarmManager alarmManager;
 
     public interface FragmentSettingListener{
         void onInputSettingSend(Boolean input);
@@ -59,12 +64,15 @@ public class FragmentSetting extends Fragment {
         four = (TextView)view.findViewById(R.id.setting_fourth_tab);
         five = (TextView)view.findViewById(R.id.setting_fifth_tab);
 
+//        Intent intent = new Intent(getActivity(), Alarm.class);
+//        PendingIntent pIntent = PendingIntent.getBroadcast(getActivity(), 0,intent, 0);
+
         final Calendar cal = Calendar.getInstance();
 
         one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    Switch mSwitch = new Switch(getActivity());
+                Switch mSwitch = new Switch(getActivity());
 
                     mSwitch.setTrackResource(switch_selector);
                     mSwitch.setThumbResource(R.drawable.switch_thumb);
@@ -91,7 +99,14 @@ public class FragmentSetting extends Fragment {
                                @Override
                                public void onTimeSet(TimePicker timePicker, int hour, int min) {
                                    String msg = String.format("%d 시 %d 분", hour, min);
+                                   Calendar reserveTime = Calendar.getInstance();
+                                   reserveTime.setTimeInMillis(System.currentTimeMillis());
+                                   reserveTime.set(Calendar.SECOND, 0);
+                                   reserveTime.set(Calendar.MINUTE, min);
+                                   reserveTime.set(Calendar.HOUR_OF_DAY, hour);
                                    Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+                                   startAlarm(reserveTime);
+//                                   alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, reserveTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pIntent);
                                }
                            }, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true);  //마지막 boolean 값은 시간을 24시간으로 보일지 아닐지
                            dialog.setTitle("원하는 알림 시간을 설정해주세요");
@@ -205,6 +220,19 @@ public class FragmentSetting extends Fragment {
 
         return view;
     } // onCreateView end
+
+
+    private void startAlarm(Calendar c){
+        AlarmManager alarmManager = (AlarmManager) getActivity().getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(getActivity(), AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity(), 1, intent , 0);
+        if(c.before(Calendar.getInstance())){
+            c.add(Calendar.DATE, 1);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
+        }
+    }
 
     
 }
