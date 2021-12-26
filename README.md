@@ -13,13 +13,6 @@
 </p>
 
 
-## 목차
-* [프로젝트 소개](#프로젝트-소개)
-* [상세 설명](#상세-설명)
-* [매일을 소중히 1.0.0 버전 다운받기](#매일을-소중히-다운받기)
-* [Q&A](#qa)
-* [Dependencies](#dependencies)
-
 <br/>
 
 ### Project
@@ -29,6 +22,7 @@
 Released: 2021.12.26
 
 
+<br/>
 
 ### Development Environment and Using Library
 
@@ -52,8 +46,6 @@ Released: 2021.12.26
 
 
 <br/>
-
-
 
 ### 매일을 소중히 다운받기
 
