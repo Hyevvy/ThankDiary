@@ -5,6 +5,14 @@
 
 <p align="middle"> 당신의 하루를 위한 <br/> 감사일기 어플리케이션 </p>
 
+<p align="middle">
+ <img src="https://img.shields.io/badge/version-1.0.0-blue?style=flat-square" alt="template version"/>
+ <img src="https://img.shields.io/badge/platform-Android-green.svg" />
+ <img src="https://img.shields.io/github/languages/top/Hyevvy/ThankDiary" />
+ <img src="https://img.shields.io/badge/google_play-Download-red?logo=google-play&logoColor=white" />
+</p>
+
+
 ## 목차
 * [프로젝트 소개](#프로젝트-소개)
 * [상세 설명](#상세-설명)
@@ -12,17 +20,17 @@
 * [Q&A](#qa)
 * [Dependencies](#dependencies)
 
-</br>
+<br/>
 
 ### 프로젝트 소개
 
-* 
 
 
 
-</br>
 
-***
+
+<br/>
+
 ### 상세 설명
 
 
@@ -30,9 +38,10 @@
 
 
 
-</br>
+<br/>
 
-***
+
+
 ### 매일을 소중히 다운받기
 
 
@@ -41,18 +50,15 @@
 
 
 
-</br>
+<br/>
 
-
-***
 ### Q&A
 
 * https://github.com/Hyevvy/ThankDiary/issues
 
 
-</br>
+<br/>
 
-***
 ### Dependencies
 
 * '매일을 소중히'는 Android Studio 4.1 & Android SDK 30 환경에서 개발되었습니다.
