@@ -43,7 +43,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" 일째 감사일기 작성중  "
+            android:text=" 일째 일기 작성중  "
             android:fontFamily="@font/nanumgothic"
             android:textSize="23dp"
             ></TextView>
@@ -81,7 +81,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" 일동안 감사일기 작성중  "
+            android:text=" 일동안 일기 작성중  "
             android:textSize="23dp"
             android:fontFamily="@font/nanumgothic"
             ></TextView>
