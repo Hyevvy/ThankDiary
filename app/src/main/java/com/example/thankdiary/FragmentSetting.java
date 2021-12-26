@@ -37,7 +37,8 @@ import static com.example.thankdiary.R.drawable.switch_selector;
 
 public class FragmentSetting extends Fragment {
     View view;
-    TextView one, two, three, four, five;
+    Switch one;
+    TextView two, three, four, five;
     FragmentSettingListener listener;
     private AlarmManager alarmManager;
 
@@ -58,7 +59,7 @@ public class FragmentSetting extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_setting, container,false);
-        one = (TextView)view.findViewById(R.id.setting_first_tab);
+        one = (Switch)view.findViewById(R.id.setting_first_tab);
         two = (TextView)view.findViewById(R.id.setting_second_tab);
         three = (TextView)view.findViewById(R.id.setting_third_tab);
         four = (TextView)view.findViewById(R.id.setting_fourth_tab);
@@ -66,75 +67,33 @@ public class FragmentSetting extends Fragment {
 
 
         final Calendar cal = Calendar.getInstance();
-
-        one.setOnClickListener(new View.OnClickListener() {
+        one.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                Switch mSwitch = new Switch(getActivity());
-
-                    mSwitch.setTrackResource(switch_selector);
-                    mSwitch.setThumbResource(R.drawable.switch_thumb);
-                    mSwitch.setText("알림 설정");
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                builder.setTitle("ALERT ON / OFF");
-                builder.setMessage("알림 해제 ------ 알림 시간 설정");
-                builder.setView(mSwitch);
-
-
-                //Switch Button 가운데 정렬
-                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT); //create a new one
-                layoutParams.weight = (float) 1.0;
-                layoutParams.gravity = Gravity.CENTER; //this is layout_gravity
-                mSwitch.setLayoutParams(layoutParams);
-
-                mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                       if(isChecked){
-                           //True, 이 때만 TimePicker 보임
-                           //이 때는 TimePicker안 보임
-                           TimePickerDialog dialog = new TimePickerDialog(getActivity(),android.R.style.Theme_Holo_Light_Dialog_NoActionBar, new TimePickerDialog.OnTimeSetListener() {
-                               @Override
-                               public void onTimeSet(TimePicker timePicker, int hour, int min) {
-                                   String msg = String.format("%d 시 %d 분", hour, min);
-                                   Calendar reserveTime = Calendar.getInstance();
-                                   reserveTime.setTimeInMillis(System.currentTimeMillis());
-                                   reserveTime.set(Calendar.SECOND, 0);
-                                   reserveTime.set(Calendar.MINUTE, min);
-                                   reserveTime.set(Calendar.HOUR_OF_DAY, hour);
-                                   Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
-                                   startAlarm(reserveTime);
-//                                   alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, reserveTime.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pIntent);
-                               }
-                           }, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true);  //마지막 boolean 값은 시간을 24시간으로 보일지 아닐지
-                           dialog.setTitle("원하는 알림 시간을 설정해주세요");
-                           dialog.show();
-                       }
-                       else {
-                           mSwitch.setText("알림 해제");
-                           Toast.makeText(getActivity(), "알림 설정이 해제되었습니다", Toast.LENGTH_SHORT).show();
-                           cancelAlarm();
-                       }
-                    }
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    //True, 이 때만 TimePicker 보임
+                    //이 때는 TimePicker안 보임
+                    TimePickerDialog dialog = new TimePickerDialog(getActivity(),android.R.style.Theme_Holo_Light_Dialog_NoActionBar, new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(TimePicker timePicker, int hour, int min) {
+                            String msg = String.format("%d 시 %d 분", hour, min);
+                            Calendar reserveTime = Calendar.getInstance();
+                            reserveTime.setTimeInMillis(System.currentTimeMillis());
+                            reserveTime.set(Calendar.SECOND, 0);
+                            reserveTime.set(Calendar.MINUTE, min);
+                            reserveTime.set(Calendar.HOUR_OF_DAY, hour);
+                            Toast.makeText(getActivity(), msg + "에 일기 알림을 드릴게요", Toast.LENGTH_SHORT).show();
+                            startAlarm(reserveTime);
+                        }
+                    }, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true);  //마지막 boolean 값은 시간을 24시간으로 보일지 아닐지
+                    dialog.setTitle("원하는 알림 시간을 설정해주세요");
+                    dialog.show();
                 }
-                );
-
-                builder.setPositiveButton("예", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getActivity(), "예 선택", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-                builder.setNegativeButton("아니오", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getActivity(), "아니오 선택", Toast.LENGTH_SHORT).show();
-                    }
-                                    });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
+                else {
+                    Toast.makeText(getActivity(), "알림 설정이 해제되었습니다", Toast.LENGTH_SHORT).show();
+                    cancelAlarm();
                 }
+            }
             });
 
 
@@ -473,7 +432,6 @@ public class FragmentSetting extends Fragment {
                 builder.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getActivity(), "닫기 선택", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.show();

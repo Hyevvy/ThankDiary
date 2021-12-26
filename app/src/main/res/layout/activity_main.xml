@@ -10,17 +10,16 @@
     <LinearLayout
         android:layout_gravity="center"
         android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageButton
             android:id="@+id/homeBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:src="@drawable/ic_baseline_favorite_border_24">
+            android:src="@drawable/thankdiary_homelogo">
         </ImageButton>
 
     </LinearLayout>
