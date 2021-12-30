@@ -1,4 +1,4 @@
-package com.example.thankdiary;
+package com.examplepackage.thankdiary;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -39,7 +39,9 @@ public class FragmentTop extends Fragment {
         date = new Date(now);
         totalDay = myDB.getTotalDay();
         seriesDay = myDB.getSeriesDay(new SimpleDateFormat("yyyy. MM. dd").format(date));
-        System.out.println("seriesDay: "  + seriesDay);
+        if(totalDay == null){
+            totalDay = 0;
+        }
 
         etNum.setText(String.valueOf(seriesDay));
         etTotalNum.setText(String.valueOf(totalDay));

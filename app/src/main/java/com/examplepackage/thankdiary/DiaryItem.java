@@ -1,4 +1,4 @@
-package com.example.thankdiary;
+package com.examplepackage.thankdiary;
 
 public class DiaryItem {
     private int id; // 게시글의 고유 ID

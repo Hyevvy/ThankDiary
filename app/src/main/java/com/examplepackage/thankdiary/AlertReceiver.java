@@ -1,4 +1,4 @@
-package com.example.thankdiary;
+package com.examplepackage.thankdiary;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

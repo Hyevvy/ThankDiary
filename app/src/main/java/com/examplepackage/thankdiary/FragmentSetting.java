@@ -1,8 +1,7 @@
-package com.example.thankdiary;
+package com.examplepackage.thankdiary;
 
 import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -10,14 +9,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -25,15 +20,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
-import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-
-import static androidx.core.content.ContextCompat.getSystemService;
-import static com.example.thankdiary.R.drawable.switch_selector;
 
 public class FragmentSetting extends Fragment {
     View view;

@@ -1,4 +1,4 @@
-package com.example.thankdiary;
+package com.examplepackage.thankdiary;
 
 import android.content.Context;
 import android.database.Cursor;
